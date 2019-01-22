@@ -86,13 +86,13 @@ int execute(char** command) {
 }
 
 int startProcess(char** command) {
-    pid_t pid; // wpid;
+    pid_t pid;
     int status = 0;
     pid = fork();
     if (pid == 0) { // child
         execvp(command[0], command);
-    } else {
-        wait(&status); // may need waitpid
+    } else { // parent
+        wait(&status);
     }
     return 1;
 }
